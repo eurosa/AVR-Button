@@ -22,7 +22,7 @@ int main(void){
       pressed_confidence_level ++;
 
       // Register as button presssed if condition met
-      if (pressed_confidence_level > 200) {
+      if (pressed_confidence_level > 500) {
         // Toggle which led is lit
         if (pressed == 0) {
           PORTB ^= 1 << PINB0;
@@ -34,7 +34,7 @@ int main(void){
     } else{
       released_confidence_level ++;
       // Register as button released if condition met
-      if (released_confidence_level > 200) {
+      if (released_confidence_level > 500) {
           pressed = 0;
           released_confidence_level = 0;
       }
