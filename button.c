@@ -12,22 +12,33 @@ int main(void){
   PORTB |= 1 << PINB1; // Set PINB1 to a high reading
 
   int pressed = 0;
+  int pressed_confidence_level = 0;
+  int released_confidence_level = 0;
 
   while (1) {
-    /* code */
 
     // Checks if button has been pressed
     if (bit_is_clear(PINB, 1)){
+      pressed_confidence_level ++;
 
-      // Toggle which led is lit
-      if (pressed == 0) {
-        PORTB ^= 1 << PINB0;
-        PORTB ^= 1 << PINB2;
-        pressed = 1;
+      // Register as button presssed if condition met
+      if (pressed_confidence_level > 200) {
+        // Toggle which led is lit
+        if (pressed == 0) {
+          PORTB ^= 1 << PINB0;
+          PORTB ^= 1 << PINB2;
+          pressed = 1;
+        }
+        pressed_confidence_level = 0;
       }
-     pressed = 1;
     } else{
-      pressed = 0;
+      released_confidence_level ++;
+      // Register as button released if condition met
+      if (released_confidence_level > 200) {
+          pressed = 0;
+          released_confidence_level = 0;
+      }
+
     }
   }
 
