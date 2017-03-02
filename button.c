@@ -6,17 +6,28 @@
 int main(void){
 
   DDRB |= 1 << PINB0;  // Data Direction Register output PINB0
+  DDRB |= 1 << PINB2;  // Data Direction Register output PINB2
+  PORTB ^= 1 << PINB0; // toggling only PINB0 on port B
   DDRB &= ~(1 << PINB1); // Data Direction Register input PINB1
   PORTB |= 1 << PINB1; // Set PINB1 to a high reading
 
+  int pressed = 0;
+
   while (1) {
     /* code */
-    PORTB ^= 1 << PINB0; // XOR (^) to toggle only pin 0 on port B
 
+    // Checks if button has been pressed
     if (bit_is_clear(PINB, 1)){
-      _delay_ms(1000);
+
+      // Toggle which led is lit
+      if (pressed == 0) {
+        PORTB ^= 1 << PINB0;
+        PORTB ^= 1 << PINB2;
+        pressed = 1;
+      }
+     pressed = 1;
     } else{
-      _delay_ms(10000); // Delay between toggling on and off at 100 ms
+      pressed = 0;
     }
   }
 
