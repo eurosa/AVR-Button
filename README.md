@@ -17,6 +17,7 @@ All the code is based on the tutorials on this site.
 5. Wires (male to female and male to male wires)
 6. A programmer (usbtinyisp or any other)
 7. PushButton
+8. Crystal for timing operations
 
 ## Software Requirements
 
