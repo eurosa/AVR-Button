@@ -16,6 +16,7 @@ All the code is based on the tutorials on this site.
 4. Two resistors (about 1 kiloohm)
 5. Wires (male to female and male to male wires)
 6. A programmer (usbtinyisp or any other)
+7. PushButton
 
 ## Software Requirements
 
